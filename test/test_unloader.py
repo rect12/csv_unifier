@@ -2,7 +2,7 @@ import unittest
 from contextlib import ExitStack
 from dataclasses import fields
 
-from bank_csv_reader import BankCsvReader
+from bank_csv_reader.csv_reader import BankCsvReader
 from datamodel.bank_transaction import BankTransaction
 from exceptions.exceptions import UnloaderError
 from unloader.base_unloader import BaseUnloader

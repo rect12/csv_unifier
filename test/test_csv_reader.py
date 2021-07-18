@@ -1,7 +1,7 @@
 import unittest
 from datetime import date
 
-from bank_csv_reader import BankCsvReader
+from bank_csv_reader.csv_reader import BankCsvReader
 from datamodel.bank_transaction import BankTransaction
 from exceptions.exceptions import UnknownBankType, ReaderConvertorError
 
