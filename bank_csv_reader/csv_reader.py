@@ -37,7 +37,7 @@ class BankCsvReader:
 
     def readlines(self) -> List[BankTransaction]:
         """
-        methond returns all lines from input csv
+        method returns all lines from input csv
         :return: List with converted to internal unified transaction type values
         """
         return [line for line in self]
