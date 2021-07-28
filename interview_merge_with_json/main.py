@@ -16,9 +16,7 @@ Let's start as simple as possible, by fetching the resources and merging them, t
 
 Feel free to use any resource (Google, libraries, etc.) as you need.
 '''
-from dataclasses import dataclass
 from itertools import groupby
-from json import JSONEncoder
 from typing import List, Dict
 import json
 
@@ -33,9 +31,6 @@ app = Flask(__name__)
 
 data = {}
 
-class MyEncoder(JSONEncoder):
-    def default(self, o):
-        return json.dump({"id": o.post["id"], "comments": o.comments})
 
 class Post:
 
@@ -43,7 +38,8 @@ class Post:
         self.post = post
         self.comments = []
 
-
+    def add_comments(self, comments):
+        self.comments += comments
 
 
 def merge(posts: List[Dict], comments: List[Dict]) -> Dict:
@@ -67,12 +63,13 @@ def load() -> Dict:
 
 @app.route("/")
 def hello():
-    return MyEncoder.encode(data)
+    return json.dumps(list(map(lambda x: {x: data[x].comments}, data)))
 
 
 def main():
-    data = load()
+    load()
     app.run()
+
 
 if __name__ == '__main__':
     main()
