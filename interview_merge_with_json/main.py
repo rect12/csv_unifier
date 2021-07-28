@@ -38,6 +38,9 @@ class Post:
         self.post = post
         self.comments = []
 
+    def __dict__(self):
+        return {"post": self.post, "comments": self.comments}
+
     def add_comments(self, comments):
         self.comments += comments
 
@@ -63,7 +66,7 @@ def load() -> Dict:
 
 @app.route("/")
 def hello():
-    return json.dumps(list(map(lambda x: {x: data[x].comments}, data)))
+    return json.dumps(list(map(lambda x: x.__dict__(), data.values())))
 
 
 def main():
